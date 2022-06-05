@@ -2,10 +2,9 @@ var fields = document.querySelectorAll("#form-user-create [name]");
 var user = {};
 
 function addLine(dataUser) {
+    console.log(dataUser);
 
-    var tr = document.createElement("tr");
-
-    tr.innerHTML = `
+    document.getElementById("table-users").innerHTML = `
 
     <tr>
         <td>
@@ -22,8 +21,6 @@ function addLine(dataUser) {
     </tr>
 
 `;
-
-document.getElementById("table-users").appendChild(tr);
 }
 
 document.getElementById("form-user-create").addEventListener("submit", function (event) {
@@ -42,5 +39,16 @@ document.getElementById("form-user-create").addEventListener("submit", function 
 
     });
 
-    addLine(user);
+    var objectUser = new User(
+        user.name,
+        user.gender,
+        user.birth,
+        user.country,
+        user.email,
+        user.password,
+        user.photo,
+        user.admin
+    );
+
+    addLine(objectUser);
 });
