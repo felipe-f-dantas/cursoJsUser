@@ -1,73 +1,85 @@
-class UserController{
+class UserController {
 
-    constructor(formId, tableId){
+    constructor(formId, tableId) {
 
-       
+
         this.formElement = document.getElementById(formId);
         this.tableElement = document.getElementById(tableId);
         this.onSubmit();
 
     }
-    onSubmit(){
+    onSubmit() {
 
-        this.formElement.addEventListener("submit",  event =>{
+        this.formElement.addEventListener("submit", event => {
 
             event.preventDefault();
 
             let values = this.getValues();
 
-            values.photo = "";
+            this.getPhoto().then(
+                 (content)=> {
 
-            this.getPhoto((content)=>{
-                values.photo = content;
-                this.addLine(values);
+                    values.photo = content;
+                    this.addLine(values);
+
+
+                },
+                 (e)=> {
+                    console.error (e);
+                }
+            );
+
+        });
+
+    }
+
+    getPhoto() {
+
+        return  new Promise((resolve, reject )=> {
+
+            let fileReader = new FileReader();
+
+            let elements = [...this.formElement.elements].filter(item => {
+
+                if (item.name === "photo") {
+                    return item;
+                }
             });
-            
-           
+
+            let file = elements[0].files[0];
+
+            fileReader.onload = () => {
+
+                resolve(fileReader.result);
+            };
+            fileReader.onerror = (e) => {
+                reject(e);
+            };
+
+            fileReader.readAsDataURL(file);
 
         });
 
     }
 
-    getPhoto(callback){
 
-        let fileReader = new FileReader();
-
-       let elements = [...this.formElement.elements].filter(item=>{
-
-            if (item.name === "photo"){
-                return item;
-            }
-        });
-
-        let file = elements [0].files[0];
-
-        fileReader.onload = ()=> {
-
-           callback(fileReader.result);
-        };
-
-        fileReader.readAsDataURL(file);
-    }
-
-
-    getValues(){
+    getValues() {
 
         let user = {};
 
         [...this.formElement.elements].forEach(function (field, index) {
 
             if (field.name == "gender") {
-    
+
                 if (field.checked) {
                     user[field.name] = field.value;
                 }
             } else {
                 user[field.name] = field.value;
             }
-    
+
         });
-    
+
         return new User(
             user.name,
             user.gender,
@@ -78,14 +90,14 @@ class UserController{
             user.photo,
             user.admin
         );
-            
+
         return objectUser;
     }
 
 
-   addLine(dataUser) {
-          
-       this.tableElement.innerHTML = `
+    addLine(dataUser) {
+
+        this.tableElement.innerHTML = `
     
         <tr>
             <td>
