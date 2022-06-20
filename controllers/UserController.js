@@ -14,18 +14,25 @@ class UserController {
 
             event.preventDefault();
 
+            let btn = this.formElement.querySelector("[type=submit]");
+
+            btn.disabled = true;
+
             let values = this.getValues();
 
             this.getPhoto().then(
-                 (content)=> {
+                (content) => {
 
                     values.photo = content;
                     this.addLine(values);
 
+                    this.formElement.reset();
+
+                    btn.disabled = false;
 
                 },
-                 (e)=> {
-                    console.error (e);
+                (e) => {
+                    console.error(e);
                 }
             );
 
@@ -35,7 +42,7 @@ class UserController {
 
     getPhoto() {
 
-        return  new Promise((resolve, reject )=> {
+        return new Promise((resolve, reject) => {
 
             let fileReader = new FileReader();
 
@@ -57,7 +64,7 @@ class UserController {
             };
 
             if (file) {
-                    fileReader.readAsDataURL(file);
+                fileReader.readAsDataURL(file);
             } else {
                 resolve("dist/img/boxed-bg.jpg");
             }
@@ -78,11 +85,11 @@ class UserController {
                 if (field.checked) {
                     user[field.name] = field.value;
                 }
-            } else if (field.name == "admin"){
+            } else if (field.name == "admin") {
 
                 user[field.name] = field.checked;
-                
-            }else {
+
+            } else {
                 user[field.name] = field.value;
             }
 
@@ -114,7 +121,7 @@ class UserController {
             </td>
             <td>${dataUser.name}</td>
             <td>${dataUser.email}</td>
-            <td>${(dataUser.admin) ? "sim": "nao"}</td>
+            <td>${(dataUser.admin) ? "sim" : "nao"}</td>
             <td>${dataUser.birth}</td>
             <td>
                 <button type="button" class="btn btn-primary btn-xs btn-flat">Editar</button>
@@ -123,6 +130,6 @@ class UserController {
    
     
     `;
-        this.tableElement.appendChild (tr);
+        this.tableElement.appendChild(tr);
     }
 }
