@@ -63,6 +63,6 @@ fatal: Authentication failed for .... Ajuda abaixo
 https://stackoverflow.com/questions/60757334/git-push-from-visual-studio-code-no-anonymous-write-access-authentication-fai
 
 
-#Criar uma nova branch 
+# Criar uma nova branch 
 
 git checkout -b MinhaNovaBrach
