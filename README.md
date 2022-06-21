@@ -1,4 +1,4 @@
-# cursoJsUser
+# cursoJsUser # adicionado o pc
 
 #treinando uso do Java Script
 #versionado entre PC e Not afim de aprender mais sobre o git e seus comandos
@@ -63,6 +63,7 @@ fatal: Authentication failed for .... Ajuda abaixo
 https://stackoverflow.com/questions/60757334/git-push-from-visual-studio-code-no-anonymous-write-access-authentication-fai
 
 
-#Criar uma nova branch 
+# Criar uma nova branch 
 
 git checkout -b MinhaNovaBrach
+
