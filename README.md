@@ -66,8 +66,3 @@ https://stackoverflow.com/questions/60757334/git-push-from-visual-studio-code-no
 # Criar uma nova branch 
 
 git checkout -b MinhaNovaBrach
-<<<<<<< HEAD
-F
-=======
-
->>>>>>> 5da9cc5886ccda7b815ae45f4b6fa528458c23ee
