@@ -10,36 +10,38 @@ class User {
         this._password = password;
         this._photo = photo;
         this._admin = admin;
-        this._register = new Date()
+        this._register = new Date();
     }
 
     get name() {
-        this._name;
+        return this._name;
     }
     get gender() {
-        this._gender;
+        return this._gender;
     }
     get birth() {
-        this._birth;
+        return this._birth;
     }
     get country() {
-        this._country;
+        return this._country;
     }
     get email() {
-        this._email;
+        return this._email;
     }
     get password() {
-        this._password;
+        return this._password;
     }
     get photo() {
-        this._photo;
+        return this._photo;
     }
     get admin() {
         this._admin;
     }
     get register() {
-        this._register;
+        return this._register;
     }
 
-
+    set photo(value) {
+        this._photo = value;
+    }
 }
